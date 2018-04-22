@@ -1,0 +1,2 @@
+android.app.Application
+XAM_Trial_1.XAM_Trial_1
