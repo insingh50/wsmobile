@@ -155,6 +155,9 @@ namespace XAM_Trial_1
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f090022
+			public const int account = 2131296290;
+			
 			// aapt resource value: 0x7f09000a
 			public const int annotationLayout = 2131296266;
 			
@@ -164,8 +167,8 @@ namespace XAM_Trial_1
 			// aapt resource value: 0x7f090012
 			public const int big3 = 2131296274;
 			
-			// aapt resource value: 0x7f090033
-			public const int bottom_labels = 2131296307;
+			// aapt resource value: 0x7f090036
+			public const int bottom_labels = 2131296310;
 			
 			// aapt resource value: 0x7f090009
 			public const int chartBehaviorLayout = 2131296265;
@@ -173,8 +176,8 @@ namespace XAM_Trial_1
 			// aapt resource value: 0x7f09000d
 			public const int chartLegendScrollView = 2131296269;
 			
-			// aapt resource value: 0x7f090034
-			public const int content = 2131296308;
+			// aapt resource value: 0x7f090037
+			public const int content = 2131296311;
 			
 			// aapt resource value: 0x7f090005
 			public const int dataMarkerLayout = 2131296261;
@@ -197,8 +200,8 @@ namespace XAM_Trial_1
 			// aapt resource value: 0x7f090002
 			public const int gridLineLayout = 2131296258;
 			
-			// aapt resource value: 0x7f090035
-			public const int gridLinesLayout = 2131296309;
+			// aapt resource value: 0x7f090038
+			public const int gridLinesLayout = 2131296312;
 			
 			// aapt resource value: 0x7f090010
 			public const int iconView = 2131296272;
@@ -236,53 +239,62 @@ namespace XAM_Trial_1
 			// aapt resource value: 0x7f090018
 			public const int nasdaqTicker = 2131296280;
 			
-			// aapt resource value: 0x7f090026
-			public const int pos1PerChange = 2131296294;
-			
-			// aapt resource value: 0x7f090025
-			public const int pos1Ticker = 2131296293;
+			// aapt resource value: 0x7f090029
+			public const int pos1PerChange = 2131296297;
 			
 			// aapt resource value: 0x7f090028
-			public const int pos2PerChange = 2131296296;
-			
-			// aapt resource value: 0x7f090027
-			public const int pos2Ticker = 2131296295;
-			
-			// aapt resource value: 0x7f09002a
-			public const int pos3PerChange = 2131296298;
-			
-			// aapt resource value: 0x7f090029
-			public const int pos3Ticker = 2131296297;
-			
-			// aapt resource value: 0x7f09002c
-			public const int pos4PerChange = 2131296300;
+			public const int pos1Ticker = 2131296296;
 			
 			// aapt resource value: 0x7f09002b
-			public const int pos4Ticker = 2131296299;
+			public const int pos2PerChange = 2131296299;
 			
-			// aapt resource value: 0x7f090023
-			public const int posChart = 2131296291;
+			// aapt resource value: 0x7f09002a
+			public const int pos2Ticker = 2131296298;
+			
+			// aapt resource value: 0x7f09002d
+			public const int pos3PerChange = 2131296301;
+			
+			// aapt resource value: 0x7f09002c
+			public const int pos3Ticker = 2131296300;
+			
+			// aapt resource value: 0x7f09002f
+			public const int pos4PerChange = 2131296303;
+			
+			// aapt resource value: 0x7f09002e
+			public const int pos4Ticker = 2131296302;
 			
 			// aapt resource value: 0x7f090024
-			public const int positions = 2131296292;
+			public const int posChart = 2131296292;
+			
+			// aapt resource value: 0x7f090025
+			public const int posNetProfit = 2131296293;
+			
+			// aapt resource value: 0x7f090026
+			public const int posPercentProfit = 2131296294;
+			
+			// aapt resource value: 0x7f090023
+			public const int position = 2131296291;
+			
+			// aapt resource value: 0x7f090027
+			public const int positions = 2131296295;
 			
 			// aapt resource value: 0x7f090000
 			public const int rootLayout = 2131296256;
 			
-			// aapt resource value: 0x7f09002d
-			public const int search = 2131296301;
-			
 			// aapt resource value: 0x7f090030
-			public const int searchChange = 2131296304;
+			public const int search = 2131296304;
+			
+			// aapt resource value: 0x7f090033
+			public const int searchChange = 2131296307;
+			
+			// aapt resource value: 0x7f090034
+			public const int searchChart = 2131296308;
+			
+			// aapt resource value: 0x7f090032
+			public const int searchPrice = 2131296306;
 			
 			// aapt resource value: 0x7f090031
-			public const int searchChart = 2131296305;
-			
-			// aapt resource value: 0x7f09002f
-			public const int searchPrice = 2131296303;
-			
-			// aapt resource value: 0x7f09002e
-			public const int searchTicker = 2131296302;
+			public const int searchTicker = 2131296305;
 			
 			// aapt resource value: 0x7f090004
 			public const int seriesLayout = 2131296260;
@@ -308,17 +320,14 @@ namespace XAM_Trial_1
 			// aapt resource value: 0x7f090006
 			public const int technicalIndicatorLayout = 2131296262;
 			
-			// aapt resource value: 0x7f090022
-			public const int textView1 = 2131296290;
-			
-			// aapt resource value: 0x7f090036
-			public const int thumbLayout = 2131296310;
+			// aapt resource value: 0x7f090039
+			public const int thumbLayout = 2131296313;
 			
 			// aapt resource value: 0x7f090001
 			public const int titleLayout = 2131296257;
 			
-			// aapt resource value: 0x7f090032
-			public const int top_labels = 2131296306;
+			// aapt resource value: 0x7f090035
+			public const int top_labels = 2131296309;
 			
 			static Id()
 			{

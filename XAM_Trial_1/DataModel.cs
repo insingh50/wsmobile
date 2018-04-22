@@ -7,6 +7,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -54,6 +55,7 @@ namespace XAM_Trial_1
 		public double Low { get; set; }
 		public double Close { get; set; }
 		public int Volume { get; set; }
+		public Color Color { get; set; }
 		public Tick(string date, double open, double high, double low, double close, int volume)
 		{
 			this.Date = !date.Contains('-') ? DateTime.ParseExact(date, "yyyyMMddHH:mm", CultureInfo.InvariantCulture) : DateTime.ParseExact(date, "yyyy-MM-ddHH:mm", CultureInfo.InvariantCulture);
@@ -62,6 +64,7 @@ namespace XAM_Trial_1
 			this.Low = low;
 			this.Close = close;
 			this.Volume = volume;
+			this.Color = Color.Red;
 		}
 	}
 	public class TickModel

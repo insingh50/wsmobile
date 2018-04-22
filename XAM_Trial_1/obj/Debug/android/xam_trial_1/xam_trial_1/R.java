@@ -28,13 +28,14 @@ public final class R {
         public static final int splashscreen=0x7f020001;
     }
     public static final class id {
+        public static final int account=0x7f090022;
         public static final int annotationLayout=0x7f09000a;
         public static final int axisLayout=0x7f090007;
         public static final int big3=0x7f090012;
-        public static final int bottom_labels=0x7f090033;
+        public static final int bottom_labels=0x7f090036;
         public static final int chartBehaviorLayout=0x7f090009;
         public static final int chartLegendScrollView=0x7f09000d;
-        public static final int content=0x7f090034;
+        public static final int content=0x7f090037;
         public static final int dataMarkerLayout=0x7f090005;
         public static final int djiaCurPrice=0x7f090015;
         public static final int djiaNetChange=0x7f090016;
@@ -42,7 +43,7 @@ public final class R {
         public static final int djiaSpark=0x7f090014;
         public static final int djiaTicker=0x7f090013;
         public static final int gridLineLayout=0x7f090002;
-        public static final int gridLinesLayout=0x7f090035;
+        public static final int gridLinesLayout=0x7f090038;
         public static final int iconView=0x7f090010;
         public static final int label=0x7f090011;
         public static final int legendHeader=0x7f09000c;
@@ -55,22 +56,25 @@ public final class R {
         public static final int nasdaqPercentChange=0x7f09001c;
         public static final int nasdaqSpark=0x7f090019;
         public static final int nasdaqTicker=0x7f090018;
-        public static final int pos1PerChange=0x7f090026;
-        public static final int pos1Ticker=0x7f090025;
-        public static final int pos2PerChange=0x7f090028;
-        public static final int pos2Ticker=0x7f090027;
-        public static final int pos3PerChange=0x7f09002a;
-        public static final int pos3Ticker=0x7f090029;
-        public static final int pos4PerChange=0x7f09002c;
-        public static final int pos4Ticker=0x7f09002b;
-        public static final int posChart=0x7f090023;
-        public static final int positions=0x7f090024;
+        public static final int pos1PerChange=0x7f090029;
+        public static final int pos1Ticker=0x7f090028;
+        public static final int pos2PerChange=0x7f09002b;
+        public static final int pos2Ticker=0x7f09002a;
+        public static final int pos3PerChange=0x7f09002d;
+        public static final int pos3Ticker=0x7f09002c;
+        public static final int pos4PerChange=0x7f09002f;
+        public static final int pos4Ticker=0x7f09002e;
+        public static final int posChart=0x7f090024;
+        public static final int posNetProfit=0x7f090025;
+        public static final int posPercentProfit=0x7f090026;
+        public static final int position=0x7f090023;
+        public static final int positions=0x7f090027;
         public static final int rootLayout=0x7f090000;
-        public static final int search=0x7f09002d;
-        public static final int searchChange=0x7f090030;
-        public static final int searchChart=0x7f090031;
-        public static final int searchPrice=0x7f09002f;
-        public static final int searchTicker=0x7f09002e;
+        public static final int search=0x7f090030;
+        public static final int searchChange=0x7f090033;
+        public static final int searchChart=0x7f090034;
+        public static final int searchPrice=0x7f090032;
+        public static final int searchTicker=0x7f090031;
         public static final int seriesLayout=0x7f090004;
         public static final int spCurPrice=0x7f09001f;
         public static final int spNetChange=0x7f090020;
@@ -79,10 +83,9 @@ public final class R {
         public static final int spTicker=0x7f09001d;
         public static final int stripLinesLayout=0x7f090003;
         public static final int technicalIndicatorLayout=0x7f090006;
-        public static final int textView1=0x7f090022;
-        public static final int thumbLayout=0x7f090036;
+        public static final int thumbLayout=0x7f090039;
         public static final int titleLayout=0x7f090001;
-        public static final int top_labels=0x7f090032;
+        public static final int top_labels=0x7f090035;
     }
     public static final class layout {
         public static final int chart_layout=0x7f040000;
