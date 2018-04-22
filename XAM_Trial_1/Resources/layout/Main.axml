@@ -9,7 +9,6 @@
     android:layout_marginRight="25dip"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
-    android:clickable="true"
     android:focusable="true">
     <GridLayout
         android:id="@+id/big3"
@@ -24,7 +23,7 @@
             android:id="@+id/djiaTicker"
             android:text="DJIA"
             android:textSize="14dip"
-						android:textStyle="bold"/>
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/djiaSpark"
             android:text="Sparkchat"
@@ -35,12 +34,12 @@
             android:id="@+id/djiaCurPrice"
             android:text="CurPrice"
             android:textSize="14dip"
-						android:layout_marginRight="14dip"/>
+            android:layout_marginRight="14dip" />
         <TextView
             android:id="@+id/djiaNetChange"
             android:text="NetChange"
             android:textSize="14dip"
-						android:layout_marginRight="14dip" />
+            android:layout_marginRight="14dip" />
         <TextView
             android:id="@+id/djiaPercentChange"
             android:text="%Change"
@@ -50,7 +49,7 @@
             android:id="@+id/nasdaqTicker"
             android:text="Nasdaq"
             android:textSize="14dip"
-						android:textStyle="bold" />
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/nasdaqSpark"
             android:text="Sparkchat"
@@ -61,12 +60,12 @@
             android:id="@+id/nasdaqCurPrice"
             android:text="CurPrice"
             android:textSize="14dip"
-						android:layout_marginRight="14dip" />
+            android:layout_marginRight="14dip" />
         <TextView
             android:id="@+id/nasdaqNetChange"
             android:text="NetChange"
             android:textSize="14dip"
-						android:layout_marginRight="14dip" />
+            android:layout_marginRight="14dip" />
         <TextView
             android:id="@+id/nasdaqPercentChange"
             android:text="%Change"
@@ -76,7 +75,7 @@
             android:id="@+id/spTicker"
             android:text="S&amp;P"
             android:textSize="14dip"
-						android:textStyle="bold" />
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/spSpark"
             android:text="Sparkchat"
@@ -87,12 +86,12 @@
             android:id="@+id/spCurPrice"
             android:text="CurPrice"
             android:textSize="14dip"
-						android:layout_marginRight="14dip" />
+            android:layout_marginRight="14dip" />
         <TextView
             android:id="@+id/spNetChange"
             android:text="NetChange"
             android:textSize="14dip"
-						android:layout_marginRight="14dip" />
+            android:layout_marginRight="14dip" />
         <TextView
             android:id="@+id/spPercentChange"
             android:text="%Change"
@@ -100,7 +99,7 @@
     </GridLayout>
     <TextView
         android:text="Account #115iamdawalrus"
-				android:textSize="17dip"
+        android:textSize="17dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/big3"
@@ -168,30 +167,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/posChart"
-        android:layout_marginTop="0.0dp">
+        android:layout_marginBottom="10dp">
         <EditText
             android:id="@+id/searchTicker"
-            android:minWidth="65dp"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="200dp"
+            android:layout_marginRight="180dp"
             android:imeOptions="actionGo"
+						android:textAllCaps="true"
             android:inputType="text"
-						android:gravity="center"
-						android:backgroundTint="#004579"
-						android:textCursorDrawable="@null"
-						android:maxLength="4"
-						/>
+            android:gravity="center"
+            android:backgroundTint="#004579"
+            android:textCursorDrawable="@null"
+            android:maxLength="4"
+            android:background="@android:color/transparent"
+						android:text="@string/default_search_ticker"/>
         <TextView
             android:id="@+id/searchPrice"
             android:text="Text"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:gravity="center" />
+            android:gravity="center"
+            android:layout_marginRight="15dp" />
         <TextView
             android:id="@+id/searchChange"
             android:text="Text"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center" />
     </LinearLayout>

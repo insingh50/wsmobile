@@ -14,18 +14,24 @@ using System.Net;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using Android.Views.InputMethods;
+using System.Threading.Tasks;
 
 namespace XAM_Trial_1 {
 	[Activity(Label = "XAM_Trial_1", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme")]
 	public class MainActivity : Activity
 	{
 		static EditText searchInput;
-
 		static TickModel searchTickData = new TickModel();
+
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
 			Utils.changeToLowProfile(this);
 			Window.DecorView.SetBackgroundColor(Color.White);
+
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+			getTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData.TickData);
+#pragma warning restore CS4014
 
 			SetContentView(Resource.Layout.Main);
 
@@ -52,10 +58,9 @@ namespace XAM_Trial_1 {
 			{
 				Maximum = 30000,
 			};
-			TickModel searchTicks = new TickModel();
 			HiLoOpenCloseSeries ohlc = new HiLoOpenCloseSeries()
 			{
-				ItemsSource = searchTicks.TickData,
+				ItemsSource = { },
 				XBindingPath = "Date",
 				Open = "Open",
 				High = "High",
@@ -73,9 +78,17 @@ namespace XAM_Trial_1 {
 
 			// make sure search ticker text is all caps
 			searchInput = FindViewById<EditText>(Resource.Id.searchTicker);
-			searchInput.SetFilters(new IInputFilter[] { new InputFilterAllCaps()});
+			IInputFilter[] editFilters = searchInput.GetFilters();
+			IInputFilter[] newFilters = new IInputFilter[editFilters.Length + 1];
+			Array.Copy(editFilters, 0, newFilters, 0, editFilters.Length);
+			newFilters[editFilters.Length] = new InputFilterAllCaps();
+			searchInput.SetFilters(newFilters);
+			searchInput.InputType |= InputTypes.TextFlagNoSuggestions | InputTypes.TextVariationVisiblePassword;
+
 			// change function of enter key in search ticker txtbox
 			searchInput.KeyPress += OnSearchTickerBoxKeyPressAsync;
+
+			// hide keyboard when touching outside of search ticker box
 		}
 
 		private async void OnSearchTickerBoxKeyPressAsync(object sender, View.KeyEventArgs e)
@@ -85,32 +98,7 @@ namespace XAM_Trial_1 {
 			{
 				try
 				{
-					// setting up webclient to reques
-					WebClient client = new WebClient();
-					var result = await client.DownloadStringTaskAsync("https://api.iextrading.com/1.0/stock/" + searchInput.Text + "/chart/1d?format=csv");
-					//var settings = new JsonSerializerSettings()
-					//{
-					//	DateFormatString = "yyyyMMdd",
-					//};
-					//ObservableCollection<Tick> tickData = JsonConvert.DeserializeObject<ObservableCollection<Tick>>(result, settings);
-					var listResult = result.Trim().Split(new char[] { '\r',  '\n' });
-					for (int i = 1; i < listResult.Length; i++)
-					{
-						if (listResult[i] != "")
-						{
-							string[] tickDetails = listResult[i].Split(',');
-							//if (i == 2)
-							//{
-
-							//}
-							//else
-							{
-								searchTickData.TickData.Add(new Tick(tickDetails[0] + tickDetails[1], Double.Parse(tickDetails[3]), Double.Parse(tickDetails[3]), Double.Parse(tickDetails[4]), Double.Parse(tickDetails[4]), int.Parse(tickDetails[6])));
-							}
-							
-						}
-					}
-					client.Dispose();
+					await getTickerChartData(searchInput.Text, "1d", searchTickData.TickData);
 				}
 				catch (FormatException formatE)
 				{
@@ -125,6 +113,37 @@ namespace XAM_Trial_1 {
 
 				e.Handled = true;
 			}
+		}
+
+		private static async Task getTickerChartData(string ticker, string timeFrame, ObservableCollection<Tick> collection)
+		{
+			collection.Clear();
+			// setting up webclient to request
+			WebClient client = new WebClient();
+			var result = await client.DownloadStringTaskAsync("https://api.iextrading.com/1.0/stock/" + ticker + "/chart/" + timeFrame + "?format=csv");
+			//var settings = new JsonSerializerSettings()
+			//{
+			//	DateFormatString = "yyyyMMdd",
+			//};
+			//ObservableCollection<Tick> tickData = JsonConvert.DeserializeObject<ObservableCollection<Tick>>(result, settings);
+			var listResult = result.Trim().Split(new char[] { '\r', '\n' });
+			for (int i = 1; i < listResult.Length; i++)
+			{
+				if (listResult[i] != "")
+				{
+					string[] tickDetails = listResult[i].Split(',');
+					//if (i == 2)
+					//{
+
+					//}
+					//else
+					{
+						collection.Add(new Tick(tickDetails[0] + tickDetails[1], Double.Parse(tickDetails[3]), Double.Parse(tickDetails[3]), Double.Parse(tickDetails[4]), Double.Parse(tickDetails[4]), int.Parse(tickDetails[6])));
+					}
+
+				}
+			}
+			client.Dispose();
 		}
 
 		public override void OnWindowFocusChanged(bool hasFocus) {

@@ -380,6 +380,9 @@ namespace XAM_Trial_1
 			// aapt resource value: 0x7f060008
 			public const int app_name = 2131099656;
 			
+			// aapt resource value: 0x7f060009
+			public const int default_search_ticker = 2131099657;
+			
 			// aapt resource value: 0x7f060001
 			public const int q = 2131099649;
 			

@@ -96,6 +96,7 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f060008;
+        public static final int default_search_ticker=0x7f060009;
         public static final int q=0x7f060001;
         public static final int quarter=0x7f060000;
         public static final int sfchart_close_label=0x7f060007;
