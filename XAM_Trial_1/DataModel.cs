@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
-
+using System.Xml;
+using System.Xml.Serialization;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -83,5 +86,23 @@ namespace XAM_Trial_1
 		{
 			base.DateTimeFormat = "yyyyMMddHH:mm";
 		}
+	}
+
+	public class FeedItem
+	{
+		public string Title { get; set; }
+		public string Link { get; set; }
+		public string Description { get; set; }
+		public DateTime PubDate { get; set; }
+		public string Creator { get; set; }
+		public string Category { get; set; }
+		public string Content { get; set; }
+	}
+
+	public class FeedManager
+	{
+		public List<FeedItem> FeedItems{ get; set; }
+
+		
 	}
 }

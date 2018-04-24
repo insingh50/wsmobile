@@ -37,6 +37,8 @@ namespace XAM_Trial_1 {
 
 			SetUpSearchChart();
 
+			SetUpNews();
+
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 			getTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
 #pragma warning restore CS4014
@@ -56,6 +58,12 @@ namespace XAM_Trial_1 {
 			// hide keyboard when touching outside of search ticker box
 		}
 
+		private void SetUpNews()
+		{
+			FeedManager feedManager = new FeedManager();
+			//feedManager.GetFeedItems("https://us.spindices.com/rss/rss-details/?rssFeedName=all-indices");
+
+		}
 
 		private void SetUpPositionsChart()
 		{
@@ -73,6 +81,9 @@ namespace XAM_Trial_1 {
 				AnimationDuration = 1,
 				ExplodeAll = true,
 				ExplodeRadius = .8,
+				SmartLabelsEnabled = true,
+				ConnectorType = ConnectorType.Bezier,
+				DataMarkerPosition = CircularSeriesDataMarkerPosition.OutsideExtended,
 			};
 			doughnut.ColorModel.ColorPalette = ChartColorPalette.Custom;
 			doughnut.ColorModel.CustomColors = new List<Color>() { Color.DarkRed, Color.DarkGreen};
@@ -107,33 +118,41 @@ namespace XAM_Trial_1 {
 			searchChart.PrimaryAxis.TrackballLabelStyle.TextColor = Color.WhiteSmoke;
 			searchChart.PrimaryAxis.TrackballLabelStyle.TextSize = 10;
 			searchChart.PrimaryAxis.TrackballLabelStyle.BackgroundColor = Color.Black;
+			searchChart.PrimaryAxis.TickPosition = AxisElementPosition.Inside;
 
 			searchChart.SecondaryAxis = new NumericalAxis();
 			//searchChart.SecondaryAxis.ShowTrackballInfo = true;
 			//searchChart.SecondaryAxis.TrackballLabelStyle.BackgroundColor = Color.LightGray;
+			//searchChart.SuspendSeriesNotification();
+			searchChart.HorizontalScrollBarEnabled = true;
+			searchChart.SecondaryAxis.TickPosition = AxisElementPosition.Inside;
 
 			HiLoOpenCloseSeries ohlc = new HiLoOpenCloseSeries()
 			{
-				ItemsSource = { },
+				ItemsSource = searchTickData.TickData,
 				XBindingPath = "Date",
 				Open = "Open",
 				High = "High",
 				Low = "Low",
 				Close = "Close",
+				EnableAnimation = true,
+				AnimationDuration = 3,
+				ShowTrackballInfo = true,
+				StrokeWidth = 1,
 			};
+			searchChart.Series.Add(ohlc);
 
-			//searchChart.Series.Add(ohlc);
 			AreaSeries volume = new AreaSeries()
 			{
 				ItemsSource = searchTickData.TickData,
 				XBindingPath = "Date",
 				YBindingPath = "Volume",
-				EnableAnimation = true,
-				AnimationDuration = 1,
+				//EnableAnimation = true,
+				//AnimationDuration = 1,
 				ShowTrackballInfo = true,
-				Color = Color.Black
+				//StrokeWidth = 3,
 			};
-			searchChart.Series.Add(volume);
+			//searchChart.Series.Add(volume);
 		}
 
 		private async void OnSearchTickerBoxKeyPressAsync(object sender, View.KeyEventArgs e)
@@ -162,8 +181,8 @@ namespace XAM_Trial_1 {
 		
 		private static async Task getTickerChartData(string ticker, string timeFrame, TickModel tickModel)
 		{
-			//tickModel.TickData.Clear();
-			tickModel = null;
+			tickModel.TickData.Clear();
+			//tickModel = null;
 			//foreach (XyDataSeries series in searchChart.Series)
 			//{
 			//	series.SuspendNotification();
@@ -178,26 +197,30 @@ namespace XAM_Trial_1 {
 			//};
 			//ObservableCollection<Tick> tickData = JsonConvert.DeserializeObject<ObservableCollection<Tick>>(result, settings);
 			var listResult = result.Trim().Split(new char[] { '\r', '\n' });
+			int j = 0;
 			for (int i = 1; i < listResult.Length; i++)
 			{
 				if (listResult[i] != "")
 				{
-					string[] tickDetails = listResult[i].Split(',');
-					//if (i == 2)
-					//{
-
-					//}
-					//else
+					if (j++ % 5 == 0)
 					{
-						newTickModel.TickData.Add(new Tick(tickDetails[0] + tickDetails[1], Double.Parse(tickDetails[3]), Double.Parse(tickDetails[3]), Double.Parse(tickDetails[4]), Double.Parse(tickDetails[4]), int.Parse(tickDetails[6])));
+						string[] tickDetails = listResult[i].Split(',');
+						//if (i == 2)
+						//{
+
+						//}
+						//else
+						{
+							tickModel.TickData.Add(new Tick(tickDetails[0] + tickDetails[1], tickDetails[15] != "-1" ? Double.Parse(tickDetails[15]) : 40, tickDetails[3] != "-1" ? Double.Parse(tickDetails[3]) : 40 , tickDetails[4] != "-1" ? Double.Parse(tickDetails[4]) : 40, tickDetails[16] != "-1" ? Double.Parse(tickDetails[16]) : 40, int.Parse(tickDetails[6])));
+						}
 					}
 				}
 			}
-			foreach (XyDataSeries series in searchChart.Series)
-			{
-				//series.ResumeNotification();
-				series.ItemsSource = newTickModel.TickData;
-			}
+			//foreach (XyDataSeries series in searchChart.Series)
+			//{
+			//	series.ItemsSource = newTickModel.TickData;
+			//	series.ResumeNotification();
+			//}
 			client.Dispose();
 		}
 

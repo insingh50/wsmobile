@@ -8,8 +8,7 @@
     android:layout_marginLeft="25dip"
     android:layout_marginRight="25dip"
     android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
-    android:focusable="true">
+    android:clickable="true">
     <GridLayout
         android:id="@+id/big3"
         android:layout_width="match_parent"
@@ -28,8 +27,8 @@
             android:id="@+id/djiaSpark"
             android:text="Sparkchat"
             android:textSize="14dip"
-            android:layout_marginRight="32.5dp"
-            android:layout_marginLeft="32.5dp" />
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp" />
         <TextView
             android:id="@+id/djiaCurPrice"
             android:text="CurPrice"
@@ -54,8 +53,8 @@
             android:id="@+id/nasdaqSpark"
             android:text="Sparkchat"
             android:textSize="14dip"
-            android:layout_marginRight="32.5dp"
-            android:layout_marginLeft="32.5dp" />
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp" />
         <TextView
             android:id="@+id/nasdaqCurPrice"
             android:text="CurPrice"
@@ -80,8 +79,8 @@
             android:id="@+id/spSpark"
             android:text="Sparkchat"
             android:textSize="14dip"
-            android:layout_marginRight="32.5dp"
-            android:layout_marginLeft="32.5dp" />
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp" />
         <TextView
             android:id="@+id/spCurPrice"
             android:text="CurPrice"
@@ -237,6 +236,6 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="fill_parent"
-        android:layout_height="250dip"
+        android:layout_height="174.0dp"
         android:layout_below="@id/search" />
 </RelativeLayout>
