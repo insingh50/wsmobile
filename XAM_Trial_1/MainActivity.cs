@@ -33,6 +33,8 @@ namespace XAM_Trial_1 {
 
 			SetContentView(Resource.Layout.Main);
 
+			SetUpBig3Async();
+
 			SetUpPositionsChart();
 
 			SetUpSearchChart();
@@ -43,6 +45,28 @@ namespace XAM_Trial_1 {
 			getTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
 #pragma warning restore CS4014
 
+			SetUpSearchBox();
+		}
+
+		private async void SetUpBig3Async()
+		{
+			string djiaQuote;
+			string spxQuote;
+			string nasdaqQuote;
+			using (var client = new WebClient())
+			{
+				djiaQuote = await client.DownloadStringTaskAsync(new Uri("https://api.iextrading.com/1.0/stock/dia/quote"));
+			}
+
+
+
+			//https://api.iextrading.com/1.0/stock/nasdaq/quote
+
+			//https://api.iextrading.com/1.0/stock/spx/quote
+		}
+
+		private void SetUpSearchBox()
+		{
 			// make sure search ticker text is all caps
 			searchInput = FindViewById<EditText>(Resource.Id.searchTicker);
 			IInputFilter[] editFilters = searchInput.GetFilters();
@@ -56,6 +80,7 @@ namespace XAM_Trial_1 {
 			searchInput.KeyPress += OnSearchTickerBoxKeyPressAsync;
 
 			// hide keyboard when touching outside of search ticker box
+
 		}
 
 		private void SetUpNews()

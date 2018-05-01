@@ -24,8 +24,8 @@ namespace XAM_Trial_1
 	{
 		public string Name { get; set; }
 		public double NetChange { get; set; }
-		//public double PercentChange { get; set; }
-		public Position(string name, double netChange/*, double percentChange*/)
+		public double PercentChange { get; set; }
+		public Position(string name, double netChange, double percentChange)
 		{
 			this.Name = name;
 			this.NetChange = netChange;
@@ -40,10 +40,10 @@ namespace XAM_Trial_1
 		{
 			CurrentPositions = new ObservableCollection<Position>
 			{
-				new Position("AAPL", 50.00/*, 8.76*/),
-				new Position("FB", 24.00/*, 3.65*/),
-				new Position("TSLA", 15.00/*, 1.15*/),
-				new Position("NVDA", 5.00/*, 0.84*/)
+				new Position("AAPL", 50.00, 8.76),
+				new Position("FB", 24.00, 3.65),
+				new Position("TSLA", 15.00, 1.15),
+				new Position("NVDA", 5.00, 0.84)
 			};
 		}
 	}
