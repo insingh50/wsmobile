@@ -18,7 +18,7 @@ using Android.Views.InputMethods;
 using System.Threading.Tasks;
 
 namespace XAM_Trial_1 {
-	[Activity(Label = "XAM_Trial_1", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme")]
+	[Activity(Label = "XAM_Trial_1", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme", NoHistory = true)]
 	public class MainActivity : Activity
 	{
 		static EditText searchInput;
@@ -28,7 +28,7 @@ namespace XAM_Trial_1 {
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			Utils.changeToLowProfile(this);
+			Utils.ChangeToLowProfile(this);
 			Window.DecorView.SetBackgroundColor(Color.White);
 
 			SetContentView(Resource.Layout.Main);
@@ -36,12 +36,10 @@ namespace XAM_Trial_1 {
 			SetUpPositionsChart();
 
 			SetUpSearchChart();
+			GetTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
+			
 
 			SetUpNews();
-
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-			getTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
-#pragma warning restore CS4014
 
 			// make sure search ticker text is all caps
 			searchInput = FindViewById<EditText>(Resource.Id.searchTicker);
@@ -50,7 +48,7 @@ namespace XAM_Trial_1 {
 			Array.Copy(editFilters, 0, newFilters, 0, editFilters.Length);
 			newFilters[editFilters.Length] = new InputFilterAllCaps();
 			searchInput.SetFilters(newFilters);
-			searchInput.InputType |= InputTypes.TextFlagNoSuggestions | InputTypes.TextVariationVisiblePassword;
+			searchInput.InputType |= InputTypes.TextFlagNoSuggestions | InputTypes.TextVariationVisiblePassword | InputTypes.TextFlagCapCharacters;
 
 			// change function of enter key in search ticker txtbox
 			searchInput.KeyPress += OnSearchTickerBoxKeyPressAsync;
@@ -78,7 +76,7 @@ namespace XAM_Trial_1 {
 				XBindingPath = "Name",
 				YBindingPath = "NetChange",
 				EnableAnimation = true,
-				AnimationDuration = 1,
+				AnimationDuration = .7,
 				ExplodeAll = true,
 				ExplodeRadius = .8,
 				SmartLabelsEnabled = true,
@@ -162,7 +160,7 @@ namespace XAM_Trial_1 {
 			{
 				try
 				{
-					await getTickerChartData(searchInput.Text, "1d", searchTickData);
+					await GetTickerChartData(searchInput.Text, "1d", searchTickData);
 				}
 				catch (FormatException formatE)
 				{
@@ -179,7 +177,7 @@ namespace XAM_Trial_1 {
 			}
 		}
 		
-		private static async Task getTickerChartData(string ticker, string timeFrame, TickModel tickModel)
+		private static async Task GetTickerChartData(string ticker, string timeFrame, TickModel tickModel)
 		{
 			tickModel.TickData.Clear();
 			//tickModel = null;
@@ -190,7 +188,6 @@ namespace XAM_Trial_1 {
 			// setting up webclient to request
 			WebClient client = new WebClient();
 			var result = await client.DownloadStringTaskAsync("https://api.iextrading.com/1.0/stock/" + ticker + "/chart/" + timeFrame + "?format=csv");
-			TickModel newTickModel = new TickModel();
 			//var settings = new JsonSerializerSettings()
 			//{
 			//	DateFormatString = "yyyyMMdd",
@@ -202,7 +199,7 @@ namespace XAM_Trial_1 {
 			{
 				if (listResult[i] != "")
 				{
-					if (j++ % 5 == 0)
+					if (/*j++ % 5 == 0*/true)
 					{
 						string[] tickDetails = listResult[i].Split(',');
 						//if (i == 2)
@@ -210,6 +207,7 @@ namespace XAM_Trial_1 {
 
 						//}
 						//else
+						if (tickDetails[3] != "-1")
 						{
 							tickModel.TickData.Add(new Tick(tickDetails[0] + tickDetails[1], tickDetails[15] != "-1" ? Double.Parse(tickDetails[15]) : 40, tickDetails[3] != "-1" ? Double.Parse(tickDetails[3]) : 40 , tickDetails[4] != "-1" ? Double.Parse(tickDetails[4]) : 40, tickDetails[16] != "-1" ? Double.Parse(tickDetails[16]) : 40, int.Parse(tickDetails[6])));
 						}
@@ -227,7 +225,7 @@ namespace XAM_Trial_1 {
 		public override void OnWindowFocusChanged(bool hasFocus) {
 			base.OnWindowFocusChanged(hasFocus);
 
-			if (hasFocus == true) Utils.changeToLowProfile(this);
+			if (hasFocus == true) Utils.ChangeToLowProfile(this);
 		}
 	}
 }

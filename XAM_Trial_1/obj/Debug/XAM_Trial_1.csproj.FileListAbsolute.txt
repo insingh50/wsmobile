@@ -155,6 +155,5 @@ D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Transactions.pd
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Web.Services.pdb
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Xml.Linq.pdb
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Xml.pdb
-D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\XAM_Trial_1.csprojResolveAssemblyReference.cache
 D:\Projects\wsmobile\XAM_Trial_1\bin\Debug\XAM_Trial_1.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\linksrc\XAM_Trial_1.dll.mdb

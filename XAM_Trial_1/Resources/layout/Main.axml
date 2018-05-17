@@ -210,6 +210,7 @@
             android:layout_marginRight="180dp"
             android:imeOptions="actionGo"
             android:textAllCaps="true"
+            android:capitalize="characters"
             android:inputType="text"
             android:gravity="center"
             android:backgroundTint="#004579"

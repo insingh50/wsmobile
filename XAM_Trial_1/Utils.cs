@@ -13,14 +13,14 @@ using Android.Widget;
 namespace XAM_Trial_1 {
 	class Utils {
 
-		public static void changeToLowProfile(Activity activity) {
-			View decorView = activity.Window.DecorView;
-			var uiOptions = (int)decorView.SystemUiVisibility;
-			var newUiOptions = (int)uiOptions;
+		public static void ChangeToLowProfile(Activity activity) {
+			//View decorView = activity.Window.DecorView;
+			//var uiOptions = (int)decorView.SystemUiVisibility;
+			//var newUiOptions = (int)uiOptions;
 
-			newUiOptions |= (int)SystemUiFlags.LowProfile;
+			//newUiOptions |= (int)SystemUiFlags.LowProfile;
 
-			decorView.SystemUiVisibility = (StatusBarVisibility)newUiOptions;
+			//decorView.SystemUiVisibility = (StatusBarVisibility)newUiOptions;
 		}
 
 	}
