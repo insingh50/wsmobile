@@ -4,5 +4,7 @@
     <SelectedDevice>Google Pixel 2 XL</SelectedDevice>
     <DefaultDevice>Nexus_6</DefaultDevice>
     <AndroidDesignerPreferredDevice>Nexus 5</AndroidDesignerPreferredDevice>
+    <DefaultDevice>Nexus_6</DefaultDevice>
+    <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>

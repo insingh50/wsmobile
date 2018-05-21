@@ -33,12 +33,13 @@ namespace XAM_Trial_1 {
 
 			SetContentView(Resource.Layout.Main);
 
+			// SetUpBig3Async();
+
 			SetUpPositionsChart();
 
 			SetUpSearchChart();
 			GetTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
 			
-
 			SetUpNews();
 
 			// make sure search ticker text is all caps
@@ -53,7 +54,8 @@ namespace XAM_Trial_1 {
 			// change function of enter key in search ticker txtbox
 			searchInput.KeyPress += OnSearchTickerBoxKeyPressAsync;
 
-			// hide keyboard when touching outside of search ticker box
+			// TODO - hide keyboard when touching outside of search ticker box
+
 		}
 
 		private void SetUpNews()
