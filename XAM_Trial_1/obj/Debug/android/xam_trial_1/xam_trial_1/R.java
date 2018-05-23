@@ -91,8 +91,9 @@ public final class R {
         public static final int chart_layout=0x7f040000;
         public static final int chart_legend=0x7f040001;
         public static final int chart_legend_item=0x7f040002;
-        public static final int main=0x7f040003;
-        public static final int range_navigator_layout=0x7f040004;
+        public static final int login=0x7f040003;
+        public static final int main=0x7f040004;
+        public static final int range_navigator_layout=0x7f040005;
     }
     public static final class mipmap {
         public static final int icon=0x7f030000;

@@ -17,18 +17,18 @@ namespace XAM_Trial_1 {
 			base.OnCreate(savedInstanceState);
 
 			// Create your application here
-			StartMainActivity();
+			StartLoginActivity();
 		}
 		protected override void OnResume()
 		{
 			base.OnResume();
-			StartMainActivity();
+			StartLoginActivity();
 		}
 
-		async void StartMainActivity() {
+		async void StartLoginActivity() {
 			await Task.Run(() => {
 				Task.Delay(3000);
-				StartActivity(new Intent(this, typeof(MainActivity)));
+				StartActivity(new Intent(this, typeof(LoginActivity)));
 			});
 		}
 	}

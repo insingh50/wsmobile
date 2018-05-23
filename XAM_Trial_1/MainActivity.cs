@@ -16,14 +16,16 @@ using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using Android.Views.InputMethods;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace XAM_Trial_1 {
-	[Activity(Label = "XAM_Trial_1", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme", NoHistory = true)]
+	[Activity(Label = "Main Activity", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme", NoHistory = true)]
 	public class MainActivity : Activity
 	{
 		static EditText searchInput;
 		static TickModel searchTickData = new TickModel();
 		static SfChart searchChart;
+		static string userID = LoginActivity.userID;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -38,9 +40,10 @@ namespace XAM_Trial_1 {
 			SetUpPositionsChart();
 
 			SetUpSearchChart();
-			GetTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
 			
 			SetUpNews();
+
+			SetUpDatabaseConnection();
 
 			// make sure search ticker text is all caps
 			searchInput = FindViewById<EditText>(Resource.Id.searchTicker);
@@ -56,6 +59,36 @@ namespace XAM_Trial_1 {
 
 			// TODO - hide keyboard when touching outside of search ticker box
 
+		}
+
+		private void SetUpDatabaseConnection()
+		{
+			string connectionString = "Data Source=67.173.30.52,1433;" +
+										"Network Library=DBMSSOCN;Initial Catalog=wsmobile_db;" +
+										"User ID=inder;Password=Peterbawa96";
+			string sql = $"SELECT password, positions FROM user_positions WHERE user={userID}";
+			SqlConnection connection;
+			SqlCommand command;
+			SqlDataReader dataReader;
+			connection = new SqlConnection(connectionString);
+			try
+			{
+				connection.Open();
+				var toast = Toast.MakeText(this, "Connected!", ToastLength.Short);
+				toast.Show();
+				command = new SqlCommand(sql, connection);
+				dataReader = command.ExecuteReader();
+				while (dataReader.Read())
+				{
+					var dataToast = Toast.MakeText(this, dataReader.GetValue(0).ToString(), ToastLength.Short);
+					toast.Show();
+				}
+			}
+			catch(Exception E)
+			{
+				var toast = Toast.MakeText(this, E.Message, ToastLength.Long);
+				toast.Show();
+			}
 		}
 
 		private void SetUpNews()
@@ -153,6 +186,7 @@ namespace XAM_Trial_1 {
 				//StrokeWidth = 3,
 			};
 			//searchChart.Series.Add(volume);
+			GetTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
 		}
 
 		private async void OnSearchTickerBoxKeyPressAsync(object sender, View.KeyEventArgs e)
