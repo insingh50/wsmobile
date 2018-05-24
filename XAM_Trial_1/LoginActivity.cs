@@ -21,14 +21,21 @@ namespace XAM_Trial_1
 		{
 			base.OnCreate(savedInstanceState);
 
-			StartLoginActivity();
+            SetContentView(Resource.Layout.Login);
+
+            Button loginBtn = FindViewById<Button>(Resource.Id.loginBtn);
+            loginBtn.Click += LoginBtn_Clicked;
 		}
 
-		async void StartLoginActivity()
+        private void LoginBtn_Clicked(object sender, EventArgs e)
+        {
+            StartMainActivity();
+        }
+
+        async void StartMainActivity()
 		{
 			await Task.Run(() => {
-				Task.Delay(3000);
-				StartActivity(new Intent(this, typeof(LoginActivity)));
+				StartActivity(new Intent(this, typeof(MainActivity)));
 			});
 		}
 	}

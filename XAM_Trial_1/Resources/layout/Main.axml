@@ -237,6 +237,6 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="fill_parent"
-        android:layout_height="174.0dp"
+        android:layout_height="197.5dp"
         android:layout_below="@id/search" />
 </RelativeLayout>
