@@ -24,4 +24,12 @@
         android:layout_marginTop="0.0dp"
         android:gravity="center"
         android:layout_gravity="center" />
+    <Button
+        android:text="Sign Up"
+        android:layout_width="126.5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginBtn"
+        android:layout_marginTop="0.0dp"
+        android:gravity="center"
+        android:layout_gravity="center" />
 </LinearLayout>

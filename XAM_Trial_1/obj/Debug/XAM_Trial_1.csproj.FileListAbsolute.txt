@@ -168,3 +168,5 @@ C:\Users\insin\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Tra
 C:\Users\insin\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Web.Services.pdb
 C:\Users\insin\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Xml.Linq.pdb
 C:\Users\insin\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Xml.pdb
+C:\Users\insin\Projects\wsmobile\XAM_Trial_1\bin\Debug\XAM_Trial_1.dll
+C:\Users\insin\Projects\wsmobile\XAM_Trial_1\obj\Debug\linksrc\XAM_Trial_1.dll.mdb

@@ -25,7 +25,7 @@ namespace XAM_Trial_1 {
 		static EditText searchInput;
 		static TickModel searchTickData = new TickModel();
 		static SfChart searchChart;
-		static string userID = LoginActivity.userID;
+		//static string userID = LoginActivity.userID;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -43,8 +43,6 @@ namespace XAM_Trial_1 {
 			
 			SetUpNews();
 
-			SetUpDatabaseConnection();
-
 			// make sure search ticker text is all caps
 			searchInput = FindViewById<EditText>(Resource.Id.searchTicker);
 			IInputFilter[] editFilters = searchInput.GetFilters();
@@ -61,35 +59,7 @@ namespace XAM_Trial_1 {
 
 		}
 
-		private void SetUpDatabaseConnection()
-		{
-			string connectionString = "Data Source=67.173.30.52,1433;" +
-										"Network Library=DBMSSOCN;Initial Catalog=wsmobile_db;" +
-										"User ID=inder;Password=Peterbawa96";
-			string sql = $"SELECT password, positions FROM user_positions WHERE user={userID}";
-			SqlConnection connection;
-			SqlCommand command;
-			SqlDataReader dataReader;
-			connection = new SqlConnection(connectionString);
-			try
-			{
-				connection.Open();
-				var toast = Toast.MakeText(this, "Connected!", ToastLength.Short);
-				toast.Show();
-				command = new SqlCommand(sql, connection);
-				dataReader = command.ExecuteReader();
-				while (dataReader.Read())
-				{
-					var dataToast = Toast.MakeText(this, dataReader.GetValue(0).ToString(), ToastLength.Short);
-					toast.Show();
-				}
-			}
-			catch(Exception E)
-			{
-				var toast = Toast.MakeText(this, E.Message, ToastLength.Long);
-				toast.Show();
-			}
-		}
+		
 
 		private void SetUpNews()
 		{
