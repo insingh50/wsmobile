@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="XAM_Trial_1.XAM_Trial_1">
-  <!--suppress UsesMinSdkAttributes-->
-  <uses-sdk android:minSdkVersion="21" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="XAM_Trial_1.XAM_Trial_1" android:installLocation="auto">
+  <uses-sdk android:minSdkVersion="22" android:targetSdkVersion="27" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:allowBackup="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:name="android.app.Application" android:debuggable="true">
+  <application android:allowBackup="true" android:label="@string/app_name" android:icon="@drawable/splash_icon" android:name="android.app.Application" android:debuggable="true">
     <activity android:label="Login Activity" android:noHistory="true" android:theme="@style/MainTheme" android:name="md5b2299388da52bfe1f68335ea2a62942e.LoginActivity" />
     <activity android:label="Main Activity" android:noHistory="true" android:theme="@style/MainTheme" android:name="md5b2299388da52bfe1f68335ea2a62942e.MainActivity" />
     <activity android:label="Workstation Mobile" android:noHistory="true" android:theme="@style/SplashTheme" android:name="md5b2299388da52bfe1f68335ea2a62942e.SplashScreen">

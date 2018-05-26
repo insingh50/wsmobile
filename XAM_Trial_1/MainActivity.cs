@@ -51,9 +51,11 @@ namespace XAM_Trial_1 {
 			newFilters[editFilters.Length] = new InputFilterAllCaps();
 			searchInput.SetFilters(newFilters);
 			searchInput.InputType |= InputTypes.TextFlagNoSuggestions | InputTypes.TextVariationVisiblePassword | InputTypes.TextFlagCapCharacters;
+			searchInput.SetSelectAllOnFocus(true);
 
 			// change function of enter key in search ticker txtbox
 			searchInput.KeyPress += OnSearchTickerBoxKeyPressAsync;
+			searchInput.Click += OnSearchTickerBoxClick;
 
 			// TODO - hide keyboard when touching outside of search ticker box
 
@@ -167,6 +169,10 @@ namespace XAM_Trial_1 {
 				try
 				{
 					await GetTickerChartData(searchInput.Text, "1d", searchTickData);
+					var senderTextBox = sender as EditText;
+					senderTextBox.ClearFocus();
+					InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+					imm.HideSoftInputFromWindow(senderTextBox.WindowToken, 0);
 				}
 				catch (FormatException formatE)
 				{
@@ -182,7 +188,13 @@ namespace XAM_Trial_1 {
 				e.Handled = true;
 			}
 		}
-		
+
+		private void OnSearchTickerBoxClick(object sender, EventArgs e)
+		{
+			var senderTextBox = sender as EditText;
+			senderTextBox.SelectAll();
+		}
+
 		private static async Task GetTickerChartData(string ticker, string timeFrame, TickModel tickModel)
 		{
 			tickModel.TickData.Clear();

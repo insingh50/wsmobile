@@ -202,7 +202,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/position"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+				android:descendantFocusability="beforeDescendants"
+				android:focusableInTouchMode="true">
         <EditText
             android:id="@+id/searchTicker"
             android:layout_width="70dp"
@@ -217,7 +219,7 @@
             android:textCursorDrawable="@null"
             android:maxLength="4"
             android:background="@android:color/transparent"
-            android:text="@string/default_search_ticker" />
+            android:text="@string/default_search_ticker"/>
         <TextView
             android:id="@+id/searchPrice"
             android:text="Text"

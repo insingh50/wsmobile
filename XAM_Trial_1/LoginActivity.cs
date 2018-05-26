@@ -18,7 +18,8 @@ namespace XAM_Trial_1
 	{
 		string userID;
         string password;
-        SqlConnection connection;
+		string retrievedPassword;
+		SqlConnection connection;
         SqlCommand command;
         SqlDataReader dataReader;
 
@@ -43,13 +44,22 @@ namespace XAM_Trial_1
             command = new SqlCommand(sql, connection);
             dataReader = command.ExecuteReader();
             dataReader.Read();
-            string retreivedPassword = dataReader.GetValue(0).ToString();
-            Toast.MakeText(this, $"Retrieved password was '{retreivedPassword}', while given password was '{password}'", ToastLength.Short).Show();
-            if (password == retreivedPassword.Trim()) {
-                Toast.MakeText(this, "authenticated", ToastLength.Short).Show();
-                StartMainActivity();
-                connection.Close();
-            }
+			try
+			{
+				retrievedPassword = dataReader.GetValue(0).ToString();
+				if (password == retrievedPassword.Trim())
+				{
+					Toast.MakeText(this, "Access Granted", ToastLength.Short).Show();
+					StartMainActivity();
+					connection.Close();
+				}
+			}
+			catch(InvalidOperationException)
+			{
+				Toast.MakeText(this, "Could not find an account with that User Name", ToastLength.Long).Show();
+			}
+            Toast.MakeText(this, $"Retrieved password was '{retrievedPassword}', while given password was '{password}'", ToastLength.Short).Show();
+            
             dataReader.Close();
         }
 
