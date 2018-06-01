@@ -5,9 +5,9 @@ Welcome. Here you can track the development of wsmobile.
 
 ## APIs Used
 
-Syncfusion Xamarin.Android Charts
-IEX Market Data
-Intrinio Real-Time C# SDK (modified to use Socket4Net package) | removed log4net dependency
+Syncfusion Xamarin.Android Charts<br>
+IEX Market Data<br>
+Intrinio Real-Time C# SDK (modified to use Socket4Net package) | removed log4net dependency<br>
 
 ## Known Issues
 
