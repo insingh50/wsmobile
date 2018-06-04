@@ -1,7 +1,7 @@
 # wsmobile
 
 Welcome. Here you can track the development of wsmobile.
-[//]: # "Built on the Xamarin.Android platform, wsmobile (name TBD) is meant to be a new way of looking at the market, with a more transparent and intuitive UI."
+<!-- "Built on the Xamarin.Android platform, wsmobile (name TBD) is meant to be a new way of looking at the market, with a more transparent and intuitive UI." -->
 
 ## APIs Used
 
@@ -12,3 +12,5 @@ Intrinio Real-Time C# SDK (modified to use Socket4Net package) | removed log4net
 ## Known Issues
 
 "Laggy" charts (may need alternative charting API)
+
+Made with Microsoft's Xamarin platform, which allows development on the Android OS using the .NET framework, i.e. one can build fully native Android apps using C# in Visual Studio.
