@@ -19,23 +19,57 @@ namespace XAM_Trial_1
 		string userID;
         string password;
 		string retrievedPassword;
+		string[] positions;
 		SqlConnection connection;
         SqlCommand command;
         SqlDataReader dataReader;
+		bool loggedIn;
 
         protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(savedInstanceState);
+			if (loggedIn == true) StartMainActivity();
 
-            SetContentView(Resource.Layout.Login);
+			else
+			{
+				base.OnCreate(savedInstanceState);
 
-            SetUpDatabaseConnection();
+				SetContentView(Resource.Layout.Login);
 
-            Button loginBtn = FindViewById<Button>(Resource.Id.loginBtn);
-            loginBtn.Click += LoginBtn_Clicked;
+				SetUpDatabaseConnection();
+
+				Button loginBtn = FindViewById<Button>(Resource.Id.loginBtn);
+				loginBtn.Click += LoginBtn_Clicked;
+			}
 		}
 
-        private void LoginBtn_Clicked(object sender, EventArgs e)
+		private void SetUpDatabaseConnection()
+		{
+			string connectionString = "Data Source=67.173.30.52,1433;" +
+										"Network Library=DBMSSOCN;Initial Catalog=wsmobile_db;" +
+										"User ID=inder;Password=Peterbawa96";
+			connection = new SqlConnection(connectionString);
+			try
+			{
+				connection.Open();
+				var toast = Toast.MakeText(this, "Connected!", ToastLength.Short);
+				toast.Show();
+				//string sql = $"SELECT [password], [positions] FROM user_positions WHERE [user]='{userID}'";
+				//command = new SqlCommand(sql, connection);
+				//dataReader = command.ExecuteReader();
+				//while (dataReader.Read())
+				//{
+				//    var dataToast = Toast.MakeText(this, dataReader.GetValue(0).ToString(), ToastLength.Long);
+				//    dataToast.Show();
+				//}
+			}
+			catch (Exception E)
+			{
+				var toast = Toast.MakeText(this, E.Message, ToastLength.Long);
+				toast.Show();
+			}
+		}
+
+		private void LoginBtn_Clicked(object sender, EventArgs e)
         {
             userID = FindViewById<EditText>(Resource.Id.userID).Text;
             password = FindViewById<EditText>(Resource.Id.password).Text;
@@ -49,7 +83,9 @@ namespace XAM_Trial_1
 				retrievedPassword = dataReader.GetValue(0).ToString();
 				if (password == retrievedPassword.Trim())
 				{
+					positions = dataReader.GetValue(1).ToString().Split(',');
 					Toast.MakeText(this, "Access Granted", ToastLength.Short).Show();
+					this.loggedIn = true;
 					StartMainActivity();
 					connection.Close();
 				}
@@ -66,35 +102,15 @@ namespace XAM_Trial_1
         async void StartMainActivity()
 		{
 			await Task.Run(() => {
-				StartActivity(new Intent(this, typeof(MainActivity)));
+				Intent MainActivityIntent = new Intent(this, typeof(MainActivity));
+				Bundle extras = new Bundle();
+				extras.PutString("userId", userID);
+				extras.PutString("password", password);
+				extras.PutStringArray("positions", positions);
+				MainActivityIntent.PutExtras(extras);
+				StartActivity(MainActivityIntent);
 			});
 		}
 
-        private void SetUpDatabaseConnection()
-        {
-            string connectionString = "Data Source=67.173.30.52,1433;" +
-                                        "Network Library=DBMSSOCN;Initial Catalog=wsmobile_db;" +
-                                        "User ID=inder;Password=Peterbawa96";
-            connection = new SqlConnection(connectionString);
-            try
-            {
-                connection.Open();
-                var toast = Toast.MakeText(this, "Connected!", ToastLength.Short);
-                toast.Show();
-                //string sql = $"SELECT [password], [positions] FROM user_positions WHERE [user]='{userID}'";
-                //command = new SqlCommand(sql, connection);
-                //dataReader = command.ExecuteReader();
-                //while (dataReader.Read())
-                //{
-                //    var dataToast = Toast.MakeText(this, dataReader.GetValue(0).ToString(), ToastLength.Long);
-                //    dataToast.Show();
-                //}
-            }
-            catch (Exception E)
-            {
-                var toast = Toast.MakeText(this, E.Message, ToastLength.Long);
-                toast.Show();
-            }
-        }
     }
 }

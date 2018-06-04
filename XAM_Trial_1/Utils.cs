@@ -22,6 +22,15 @@ namespace XAM_Trial_1 {
 
 			//decorView.SystemUiVisibility = (StatusBarVisibility)newUiOptions;
 		}
+		//public delegate void MyDelegate();
+		//public static MyDelegate AddFunctionToFunction(Action originalF, Action newF)
+		//{
+		//	return delegate ()
+		//	{
+		//		originalF();
+		//		newF();
+		//	};
+		//}
 
 	}
 }

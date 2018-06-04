@@ -5,8 +5,8 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <application android:allowBackup="true" android:label="@string/app_name" android:icon="@drawable/splash_icon" android:name="android.app.Application" android:debuggable="true">
     <activity android:label="Login Activity" android:noHistory="true" android:theme="@style/MainTheme" android:name="md5b2299388da52bfe1f68335ea2a62942e.LoginActivity" />
-    <activity android:label="Main Activity" android:noHistory="true" android:theme="@style/MainTheme" android:name="md5b2299388da52bfe1f68335ea2a62942e.MainActivity" />
-    <activity android:label="Workstation Mobile" android:noHistory="true" android:theme="@style/SplashTheme" android:name="md5b2299388da52bfe1f68335ea2a62942e.SplashScreen">
+    <activity android:label="Workstation Mobile" android:launchMode="singleInstance" android:noHistory="true" android:theme="@style/MainTheme" android:name="md5b2299388da52bfe1f68335ea2a62942e.MainActivity" />
+    <activity android:label="Workstation Mobile" android:launchMode="singleInstance" android:noHistory="true" android:theme="@style/SplashTheme" android:name="md5b2299388da52bfe1f68335ea2a62942e.SplashScreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

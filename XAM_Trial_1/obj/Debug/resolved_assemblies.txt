@@ -1,14 +1,17 @@
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\XAM_Trial_1.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\IntrinioRealTime.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\Java.Interop.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\Mono.Android.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\mscorlib.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\Newtonsoft.Json.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\SuperSocket.ClientEngine.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\Syncfusion.SfChart.Android.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Core.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Data.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Runtime.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Xml.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\WebSocket4Net.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Threading.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Collections.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Collections.Concurrent.dll

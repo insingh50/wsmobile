@@ -107,8 +107,11 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "XAM_Trial_1.dll" comes first in this list. */
 		"XAM_Trial_1.dll",
+		"IntrinioRealTime.dll",
 		"Newtonsoft.Json.dll",
+		"SuperSocket.ClientEngine.dll",
 		"Syncfusion.SfChart.Android.dll",
+		"WebSocket4Net.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

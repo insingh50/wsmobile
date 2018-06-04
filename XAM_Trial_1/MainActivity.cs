@@ -17,14 +17,21 @@ using System.Text.RegularExpressions;
 using Android.Views.InputMethods;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Threading;
+using Intrinio;
 
 namespace XAM_Trial_1 {
-	[Activity(Label = "Main Activity", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme", NoHistory = true)]
+	[Activity(Label = "Workstation Mobile", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme", NoHistory = true, LaunchMode = LaunchMode.SingleInstance)]
 	public class MainActivity : Activity
 	{
 		static EditText searchInput;
 		static TickModel searchTickData = new TickModel();
 		static SfChart searchChart;
+		//string[] positions;
+		static Timer timer;
+		Action[] actions = new Action[10];
+		int currentEmptyAction = 0;
 		//static string userID = LoginActivity.userID;
 
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -37,13 +44,43 @@ namespace XAM_Trial_1 {
 
 			// SetUpBig3Async();
 
+			//positions = Intent.GetStringArrayExtra("positions");
+			//positions = positions.Select(s => s.ToUpper()).ToArray();
+			//SetUpPositionsGrid();
+
 			SetUpPositionsChart();
 
 			SetUpSearchChart();
 			
 			SetUpNews();
 
-			// make sure search ticker text is all caps
+			if (Looper.MyLooper() == null)
+				Looper.Prepare();
+
+			string username = "941a5c8713d312df516fd773766dcc66";
+			string password = "19c1b7cf9c716dc6b95892177577a730";
+			QuoteProvider provider = QuoteProvider.IEX;
+
+			RealTimeClient client = new RealTimeClient(username, password, provider);
+			QuoteHandler handler = new QuoteHandler();
+			var djiaCurPrice = FindViewById<TextView>(Resource.Id.djiaCurPrice);
+			var nasdaqCurPrice = FindViewById<TextView>(Resource.Id.nasdaqCurPrice);
+			//handler.OnQuote += (IQuote quote) =>
+			//{
+			//	var newquote = (IexQuote)quote;
+			//	RunOnUiThread(() => nasdaqCurPrice.Text = newquote.Ticker.ToString());
+			//};
+			handler.OnQuote += (IQuote quote) =>
+			{
+				var newquote = (IexQuote)quote;
+				RunOnUiThread(() => djiaCurPrice.Text = newquote.Ticker.ToString());
+				RunOnUiThread(() => nasdaqCurPrice.Text = newquote.Ticker.ToString());
+			};
+			client.RegisterQuoteHandler(handler);
+			client.Join(new string[] { "AAPL", "GOOG" });
+			client.Connect();
+
+			// make sure search ticker text is all caps, and other formatting
 			searchInput = FindViewById<EditText>(Resource.Id.searchTicker);
 			IInputFilter[] editFilters = searchInput.GetFilters();
 			IInputFilter[] newFilters = new IInputFilter[editFilters.Length + 1];
@@ -58,16 +95,44 @@ namespace XAM_Trial_1 {
 			searchInput.Click += OnSearchTickerBoxClick;
 
 			// TODO - hide keyboard when touching outside of search ticker box
-
+			var autoevent = new AutoResetEvent(false);
+			timer = new Timer(MyTimerCallback, autoevent, 0, 500);
 		}
 
-		
+		private void MyTimerCallback(object state)
+		{
+			for(int i = 0; i < currentEmptyAction; i++)
+			{
+				actions[i].Invoke();
+			}
+		}
 
 		private void SetUpNews()
 		{
 			FeedManager feedManager = new FeedManager();
 			//feedManager.GetFeedItems("https://us.spindices.com/rss/rss-details/?rssFeedName=all-indices");
 
+		}
+
+		#region SETUP
+		private void SetUpPositionsGrid()
+		{
+			GridLayout positionsGrid = FindViewById<GridLayout>(Resource.Id.positions);
+			//positionsGrid.RowCount = positions.Length;
+			//foreach(var position in positions)
+			{
+				var positionName = new TextView(this);
+				//positionName.Text = position;
+				FrameLayout.LayoutParams positionNameParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WrapContent, FrameLayout.LayoutParams.WrapContent);
+				positionNameParams.SetMargins(0, 25, 0, 0);
+				positionName.LayoutParameters = positionNameParams;
+
+				var positionNetChange = new TextView(this);
+				positionNetChange.Text = "numero";
+
+				RunOnUiThread(() => positionsGrid.AddView(positionName));
+				RunOnUiThread(() => positionsGrid.AddView(positionNetChange));
+			}
 		}
 
 		private void SetUpPositionsChart()
@@ -92,7 +157,7 @@ namespace XAM_Trial_1 {
 			};
 			doughnut.ColorModel.ColorPalette = ChartColorPalette.Custom;
 			doughnut.ColorModel.CustomColors = new List<Color>() { Color.DarkRed, Color.DarkGreen};
-			posChart.Series.Add(doughnut);
+			RunOnUiThread(() => posChart.Series.Add(doughnut));
 		}
 
 		private void SetUpSearchChart()
@@ -145,7 +210,7 @@ namespace XAM_Trial_1 {
 				ShowTrackballInfo = true,
 				StrokeWidth = 1,
 			};
-			searchChart.Series.Add(ohlc);
+			RunOnUiThread(() => searchChart.Series.Add(ohlc));
 
 			AreaSeries volume = new AreaSeries()
 			{
@@ -160,6 +225,7 @@ namespace XAM_Trial_1 {
 			//searchChart.Series.Add(volume);
 			GetTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
 		}
+		#endregion
 
 		private async void OnSearchTickerBoxKeyPressAsync(object sender, View.KeyEventArgs e)
 		{

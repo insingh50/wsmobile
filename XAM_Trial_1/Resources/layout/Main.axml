@@ -150,7 +150,6 @@
     </GridLayout>
     <GridLayout
         android:id="@+id/positions"
-        android:rowCount="4"
         android:columnCount="2"
         android:minWidth="25px"
         android:minHeight="25px"
@@ -162,37 +161,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="75.5dip">
     <!-- First position -->
-        <TextView
-            android:id="@+id/pos1Ticker"
-            android:text="AAPL"
-            android:layout_marginRight="15dip" />
-        <TextView
-            android:id="@+id/pos1PerChange"
-            android:text="+8.76%" />
     <!-- Second position -->
-        <TextView
-            android:id="@+id/pos2Ticker"
-            android:text="FB"
-            android:layout_marginRight="15dip" />
-        <TextView
-            android:id="@+id/pos2PerChange"
-            android:text="+3.65%" />
     <!-- Third position -->
-        <TextView
-            android:id="@+id/pos3Ticker"
-            android:text="TSLA"
-            android:layout_marginRight="15dip" />
-        <TextView
-            android:id="@+id/pos3PerChange"
-            android:text="+1.15%" />
-    <!-- Fourth position -->
-        <TextView
-            android:id="@+id/pos4Ticker"
-            android:text="NVDA"
-            android:layout_marginRight="15dip" />
-        <TextView
-            android:id="@+id/pos4PerChange"
-            android:text="+0.84%" />
+    <!-- and so on... -->
     </GridLayout>
     <LinearLayout
         android:id="@+id/search"
