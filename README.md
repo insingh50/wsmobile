@@ -15,4 +15,4 @@ Intrinio Real-Time C# SDK (modified to use Socket4Net package) | removed log4net
 
 <hr>
 
-<sup>Made with Microsoft's Xamarin platform, which allows development on the Android OS using the .NET framework, i.e. one can build fully native Android apps using C# in Visual Studio.</sup>
+Made with Microsoft's Xamarin platform, which allows development on the Android OS using the .NET framework, i.e. one can build fully native Android apps using C# in Visual Studio.
