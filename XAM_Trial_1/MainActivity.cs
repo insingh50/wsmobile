@@ -33,6 +33,8 @@ namespace XAM_Trial_1 {
 		Action[] actions = new Action[10];
 		int currentEmptyAction = 0;
 		//static string userID = LoginActivity.userID;
+		static EditText search;
+		static RealTimeClient client;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -61,23 +63,21 @@ namespace XAM_Trial_1 {
 			string password = "19c1b7cf9c716dc6b95892177577a730";
 			QuoteProvider provider = QuoteProvider.IEX;
 
-			RealTimeClient client = new RealTimeClient(username, password, provider);
+			client = new RealTimeClient(username, password, provider);
 			QuoteHandler handler = new QuoteHandler();
 			var djiaCurPrice = FindViewById<TextView>(Resource.Id.djiaCurPrice);
 			var nasdaqCurPrice = FindViewById<TextView>(Resource.Id.nasdaqCurPrice);
-			//handler.OnQuote += (IQuote quote) =>
-			//{
-			//	var newquote = (IexQuote)quote;
-			//	RunOnUiThread(() => nasdaqCurPrice.Text = newquote.Ticker.ToString());
-			//};
+			var searchPrice = FindViewById<TextView>(Resource.Id.searchPrice);
+			search = FindViewById<EditText>(Resource.Id.searchTicker);
 			handler.OnQuote += (IQuote quote) =>
 			{
 				var newquote = (IexQuote)quote;
-				RunOnUiThread(() => djiaCurPrice.Text = newquote.Ticker.ToString());
-				RunOnUiThread(() => nasdaqCurPrice.Text = newquote.Ticker.ToString());
+				if (newquote.Ticker == search.Text) {
+						RunOnUiThread(() => searchPrice.Text = newquote.Price.ToString());
+				}
 			};
 			client.RegisterQuoteHandler(handler);
-			client.Join(new string[] { "AAPL", "GOOG" });
+			client.Join(new string[] { search.Text });
 			client.Connect();
 
 			// make sure search ticker text is all caps, and other formatting
@@ -227,6 +227,7 @@ namespace XAM_Trial_1 {
 		}
 		#endregion
 
+
 		private async void OnSearchTickerBoxKeyPressAsync(object sender, View.KeyEventArgs e)
 		{
 			e.Handled = false;
@@ -235,6 +236,8 @@ namespace XAM_Trial_1 {
 				try
 				{
 					await GetTickerChartData(searchInput.Text, "1d", searchTickData);
+					//search = searchInput.Text;
+					client.Join(searchInput.Text);
 					var senderTextBox = sender as EditText;
 					senderTextBox.ClearFocus();
 					InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
