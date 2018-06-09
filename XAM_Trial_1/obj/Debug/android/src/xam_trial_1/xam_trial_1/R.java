@@ -11,8 +11,9 @@ public final class R {
     public static final class anim {
         public static final int fadein=0x7f050000;
         public static final int fadeout=0x7f050001;
-        public static final int scale_in=0x7f050002;
-        public static final int scale_out=0x7f050003;
+        public static final int myanimation=0x7f050002;
+        public static final int scale_in=0x7f050003;
+        public static final int scale_out=0x7f050004;
     }
     public static final class attr {
     }

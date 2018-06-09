@@ -193,17 +193,17 @@
             android:text="@string/default_search_ticker" />
         <TextView
             android:id="@+id/searchPrice"
-            android:text="Text"
             android:layout_width="59.3dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_marginRight="0.0dp" />
+            android:layout_marginRight="0.0dp"
+            android:text="0" />
         <TextView
             android:id="@+id/searchChange"
-            android:text="Text"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="0" />
     </LinearLayout>
     <Com.Syncfusion.Charts.SfChart
         android:id="@+id/searchChart"

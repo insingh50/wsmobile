@@ -20,6 +20,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using Intrinio;
+using Android.Views.Animations;
 
 namespace XAM_Trial_1 {
 	[Activity(Label = "Workstation Mobile", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme", NoHistory = true, LaunchMode = LaunchMode.SingleInstance)]
@@ -73,7 +74,10 @@ namespace XAM_Trial_1 {
 			{
 				var newquote = (IexQuote)quote;
 				if (newquote.Ticker == search.Text) {
-						RunOnUiThread(() => searchPrice.Text = newquote.Price.ToString());
+					if (decimal.Parse(searchPrice.Text) < newquote.Price)
+						RunOnUiThread(() => { searchPrice.Text = newquote.Price.ToString(); searchPrice.SetTextColor(Color.DarkGreen); });
+					else if (decimal.Parse(searchPrice.Text) > newquote.Price)
+						RunOnUiThread(() => { searchPrice.Text = newquote.Price.ToString(); searchPrice.SetTextColor(Color.DarkRed); });
 				}
 			};
 			client.RegisterQuoteHandler(handler);
@@ -97,6 +101,9 @@ namespace XAM_Trial_1 {
 			// TODO - hide keyboard when touching outside of search ticker box
 			var autoevent = new AutoResetEvent(false);
 			timer = new Timer(MyTimerCallback, autoevent, 0, 500);
+
+			//var myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.MyAnimation);
+			//searchPrice.StartAnimation(myAnimation);
 		}
 
 		private void MyTimerCallback(object state)

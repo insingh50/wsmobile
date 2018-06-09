@@ -41,5 +41,16 @@ D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Transactions.dl
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Web.Services.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Xml.Linq.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Xml.XPath.XDocument.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Text.Encoding.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Net.Sockets.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Net.Primitives.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Collections.Specialized.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Net.Security.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Threading.Tasks.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Security.Cryptography.X509Certificates.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.IO.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\Mono.Data.Tds.dll
 D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\Mono.Security.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Threading.Timer.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Security.Cryptography.Primitives.dll
+D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\android\assets\System.Text.RegularExpressions.dll

@@ -5,6 +5,6 @@
     <DefaultDevice>Nexus_6</DefaultDevice>
     <AndroidDesignerPreferredDevice>Nexus 5</AndroidDesignerPreferredDevice>
     <DefaultDevice>Nexus_6</DefaultDevice>
-    <AndroidDesignerPreferredDevice>Nexus 5</AndroidDesignerPreferredDevice>
+    <AndroidDesignerPreferredDevice>Nexus 6</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>
