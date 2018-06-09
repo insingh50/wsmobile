@@ -11,8 +11,12 @@ using Android.Views;
 using Android.Widget;
 
 namespace XAM_Trial_1 {
-	class Utils {
+	internal static class Utils {
 
+		/// <summary>
+		/// Sets SystemUiFlags to enable Low Profile mode on Android/>
+		/// </summary>
+		/// <param name="activity"></param>
 		public static void ChangeToLowProfile(Activity activity) {
 			//View decorView = activity.Window.DecorView;
 			//var uiOptions = (int)decorView.SystemUiVisibility;

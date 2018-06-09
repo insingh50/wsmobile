@@ -53,7 +53,7 @@ namespace XAM_Trial_1 {
 
 			SetUpPositionsChart();
 
-			SetUpSearchChart();
+			SetUpSearchChartAsync();
 			
 			SetUpNews();
 
@@ -81,7 +81,7 @@ namespace XAM_Trial_1 {
 				}
 			};
 			client.RegisterQuoteHandler(handler);
-			client.Join(new string[] { search.Text });
+			client.Join( search.Text );
 			client.Connect();
 
 			// make sure search ticker text is all caps, and other formatting
@@ -114,6 +114,9 @@ namespace XAM_Trial_1 {
 			}
 		}
 
+		/// <summary>
+		/// Retrieve and display news from S&P Dow Jones Indices - All Indices RSS Feed
+		/// </summary>
 		private void SetUpNews()
 		{
 			FeedManager feedManager = new FeedManager();
@@ -122,6 +125,9 @@ namespace XAM_Trial_1 {
 		}
 
 		#region SETUP
+		/// <summary>
+		/// Display user's tradier positions in grid format
+		/// </summary>
 		private void SetUpPositionsGrid()
 		{
 			GridLayout positionsGrid = FindViewById<GridLayout>(Resource.Id.positions);
@@ -142,6 +148,9 @@ namespace XAM_Trial_1 {
 			}
 		}
 
+		/// <summary>
+		/// Display user's tradier position changes in doughnut chart format
+		/// </summary>
 		private void SetUpPositionsChart()
 		{
 			// set up doughnut chart
@@ -167,7 +176,10 @@ namespace XAM_Trial_1 {
 			RunOnUiThread(() => posChart.Series.Add(doughnut));
 		}
 
-		private void SetUpSearchChart()
+		/// <summary>
+		/// Set up search ticker chart
+		/// </summary>
+		private async void SetUpSearchChartAsync()
 		{
 			// set up search ticker chart
 			searchChart = FindViewById<SfChart>(Resource.Id.searchChart);
@@ -230,11 +242,15 @@ namespace XAM_Trial_1 {
 				//StrokeWidth = 3,
 			};
 			//searchChart.Series.Add(volume);
-			GetTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
+			await GetTickerChartData(Resources.GetString(Resource.String.default_search_ticker), "1d", searchTickData);
 		}
 		#endregion
 
-
+		/// <summary>
+		/// If 'Enter' is pressed, gets and displays intraday chart for the ticker typed in search box
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private async void OnSearchTickerBoxKeyPressAsync(object sender, View.KeyEventArgs e)
 		{
 			e.Handled = false;
@@ -265,12 +281,24 @@ namespace XAM_Trial_1 {
 			}
 		}
 
+		/// <summary>
+		/// Selects all text in search box
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void OnSearchTickerBoxClick(object sender, EventArgs e)
 		{
 			var senderTextBox = sender as EditText;
 			senderTextBox.SelectAll();
 		}
 
+		/// <summary>
+		/// Retrieve IEX stock data based on timeframe given
+		/// </summary>
+		/// <param name="ticker">Stock ticker to search for</param>
+		/// <param name="timeFrame">1d 5d 1m 3m 6m</param>
+		/// <param name="tickModel"><see cref="TickModel"/> object to add data collection to</param>
+		/// <returns></returns>
 		private static async Task GetTickerChartData(string ticker, string timeFrame, TickModel tickModel)
 		{
 			tickModel.TickData.Clear();
