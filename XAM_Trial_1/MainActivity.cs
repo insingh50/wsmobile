@@ -30,8 +30,7 @@ namespace XAM_Trial_1 {
 		static TickModel searchTickData = new TickModel();
 		static SfChart searchChart;
 		//string[] positions;
-		static Timer timer;
-		Action[] actions = new Action[10];
+		static readonly Timer timer;
 		int currentEmptyAction = 0;
 		//static string userID = LoginActivity.userID;
 		static EditText search;
@@ -81,7 +80,7 @@ namespace XAM_Trial_1 {
 				}
 			};
 			client.RegisterQuoteHandler(handler);
-			client.Join( search.Text );
+			client.Join(search.Text);
 			client.Connect();
 
 			// make sure search ticker text is all caps, and other formatting
@@ -100,19 +99,19 @@ namespace XAM_Trial_1 {
 
 			// TODO - hide keyboard when touching outside of search ticker box
 			var autoevent = new AutoResetEvent(false);
-			timer = new Timer(MyTimerCallback, autoevent, 0, 500);
+			//timer = new Timer(MyTimerCallback, autoevent, 0, 500);
 
 			//var myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.MyAnimation);
 			//searchPrice.StartAnimation(myAnimation);
 		}
 
-		private void MyTimerCallback(object state)
-		{
-			for(int i = 0; i < currentEmptyAction; i++)
-			{
-				actions[i].Invoke();
-			}
-		}
+		//private void MyTimerCallback(object state)
+		//{
+		//	for (int i = 0; i < currentEmptyAction; i++)
+		//	{
+		//		actions[i].Invoke();
+		//	}
+		//}
 
 		/// <summary>
 		/// Retrieve and display news from S&P Dow Jones Indices - All Indices RSS Feed
@@ -140,8 +139,7 @@ namespace XAM_Trial_1 {
 				positionNameParams.SetMargins(0, 25, 0, 0);
 				positionName.LayoutParameters = positionNameParams;
 
-				var positionNetChange = new TextView(this);
-				positionNetChange.Text = "numero";
+				var positionNetChange = new TextView(this) { Text = "numero" };
 
 				RunOnUiThread(() => positionsGrid.AddView(positionName));
 				RunOnUiThread(() => positionsGrid.AddView(positionNetChange));
@@ -260,6 +258,7 @@ namespace XAM_Trial_1 {
 				{
 					await GetTickerChartData(searchInput.Text, "1d", searchTickData);
 					//search = searchInput.Text;
+					client.LeaveAll();
 					client.Join(searchInput.Text);
 					var senderTextBox = sender as EditText;
 					senderTextBox.ClearFocus();
@@ -299,6 +298,7 @@ namespace XAM_Trial_1 {
 		/// <param name="timeFrame">1d 5d 1m 3m 6m</param>
 		/// <param name="tickModel"><see cref="TickModel"/> object to add data collection to</param>
 		/// <returns></returns>
+
 		private static async Task GetTickerChartData(string ticker, string timeFrame, TickModel tickModel)
 		{
 			tickModel.TickData.Clear();
@@ -351,4 +351,3 @@ namespace XAM_Trial_1 {
 		}
 	}
 }
-
