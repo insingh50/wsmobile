@@ -88,21 +88,11 @@ namespace XAM_Trial_1
 		}
 	}
 
-	public class FeedItem
+	public class NewsApiArticle
 	{
 		public string Title { get; set; }
-		public string Link { get; set; }
+		public string Url { get; set; }
 		public string Description { get; set; }
-		public DateTime PubDate { get; set; }
-		public string Creator { get; set; }
-		public string Category { get; set; }
-		public string Content { get; set; }
-	}
-
-	public class FeedManager
-	{
-		public List<FeedItem> FeedItems{ get; set; }
-
-		
+		public string Author { get; set; }
 	}
 }

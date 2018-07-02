@@ -1,8 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
-  <Jars />
+  <Jars>
+    <Jar>obj\Debug\lp\6\jl\arch-core-common.jar</Jar>
+    <Jar>obj\Debug\lp\7\jl\arch-lifecycle-common.jar</Jar>
+    <Jar>obj\Debug\lp\9\jl\support-annotations.jar</Jar>
+    <Jar>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\10\jl\bin\classes.jar</Jar>
+    <Jar>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\11\jl\bin\classes.jar</Jar>
+    <Jar>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\12\jl\bin\classes.jar</Jar>
+    <Jar>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\6\jl\arch-core-common.jar</Jar>
+    <Jar>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\7\jl\arch-lifecycle-common.jar</Jar>
+    <Jar>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\8\jl\bin\classes.jar</Jar>
+    <Jar>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\9\jl\support-annotations.jar</Jar>
+  </Jars>
   <ResolvedResourceDirectories>
     <ResolvedResourceDirectory>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\3\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\10\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\12\jl\res</ResolvedResourceDirectory>
   </ResolvedResourceDirectories>
   <ResolvedAssetDirectories>
     <ResolvedAssetDirectory>obj\Debug\lp\3\jl\assets</ResolvedAssetDirectory>
@@ -10,5 +23,7 @@
   <ResolvedEnvironmentFiles />
   <ResolvedResourceDirectoryStamps>
     <ResolvedResourceDirectoryStamp>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\3.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\10.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>D:\Projects\wsmobile\XAM_Trial_1\obj\Debug\lp\12.stamp</ResolvedResourceDirectoryStamp>
   </ResolvedResourceDirectoryStamps>
 </Paths>

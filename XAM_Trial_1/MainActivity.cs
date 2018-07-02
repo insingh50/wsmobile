@@ -21,6 +21,8 @@ using System.Linq;
 using System.Threading;
 using Intrinio;
 using Android.Views.Animations;
+using Newtonsoft.Json.Linq;
+using Android.Support.V7.Widget;
 
 namespace XAM_Trial_1 {
 	[Activity(Label = "Workstation Mobile", /*Icon = "@mipmap/icon",*/ Theme = "@style/MainTheme", NoHistory = true, LaunchMode = LaunchMode.SingleInstance)]
@@ -35,6 +37,7 @@ namespace XAM_Trial_1 {
 		//static string userID = LoginActivity.userID;
 		static EditText search;
 		static RealTimeClient client;
+		private static Dictionary<string, string> lastPrices = new Dictionary<string, string>();
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -54,7 +57,7 @@ namespace XAM_Trial_1 {
 
 			SetUpSearchChartAsync();
 			
-			SetUpNews();
+			SetUpNewsAsync();
 
 			if (Looper.MyLooper() == null)
 				Looper.Prepare();
@@ -77,6 +80,7 @@ namespace XAM_Trial_1 {
 						RunOnUiThread(() => { searchPrice.Text = newquote.Price.ToString(); searchPrice.SetTextColor(Color.DarkGreen); });
 					else if (decimal.Parse(searchPrice.Text) > newquote.Price)
 						RunOnUiThread(() => { searchPrice.Text = newquote.Price.ToString(); searchPrice.SetTextColor(Color.DarkRed); });
+					lastPrices[search.Text] = searchPrice.Text;
 				}
 			};
 			client.RegisterQuoteHandler(handler);
@@ -116,11 +120,42 @@ namespace XAM_Trial_1 {
 		/// <summary>
 		/// Retrieve and display news from S&P Dow Jones Indices - All Indices RSS Feed
 		/// </summary>
-		private void SetUpNews()
+		private async void SetUpNewsAsync()
 		{
-			FeedManager feedManager = new FeedManager();
-			//feedManager.GetFeedItems("https://us.spindices.com/rss/rss-details/?rssFeedName=all-indices");
+			LinearLayout newsView = FindViewById<LinearLayout>(Resource.Id.news);
+			//var mLayoutManager = new LinearLayoutManager(this);
+			//newsView.SetLayoutManager(mLayoutManager);
 
+			var client = new WebClient();
+			string retreivedNews = await client.DownloadStringTaskAsync(new Uri("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=9dc668131a774b19beba0889446aaeeb"));
+
+			JObject news = JObject.Parse(retreivedNews);
+
+			// get JSON result objects in to a list
+			List<JToken> results = news["articles"].Children().ToList();
+
+			// serialize JSON results into .NET objects
+			List<NewsApiArticle> newsResults = new List<NewsApiArticle>();
+			foreach (JToken result in results)
+			{
+				// JToken.ToObject is a helper method that uses JsonSerializer internally
+				NewsApiArticle searchResult = result.ToObject<NewsApiArticle>();
+				newsResults.Add(searchResult);
+			}
+			foreach(NewsApiArticle article in newsResults)
+			{
+				TextView newsTextView = new TextView(this)
+				{
+					Text = article.Title,
+					Clickable = true,
+				};
+				newsTextView.Click += (object sender, EventArgs e) => 
+				{
+					Intent intent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(article.Url));
+					StartActivity(intent);
+				};
+				RunOnUiThread(() => newsView.AddView(newsTextView));
+			}
 		}
 
 		#region SETUP
@@ -258,6 +293,11 @@ namespace XAM_Trial_1 {
 				{
 					await GetTickerChartData(searchInput.Text, "1d", searchTickData);
 					//search = searchInput.Text;
+					var searchPrice = FindViewById<TextView>(Resource.Id.searchPrice);
+					if (lastPrices.ContainsKey(searchInput.Text))
+					{
+						RunOnUiThread(() => searchPrice.Text = lastPrices[searchInput.Text]);
+					}
 					client.LeaveAll();
 					client.Join(searchInput.Text);
 					var senderTextBox = sender as EditText;

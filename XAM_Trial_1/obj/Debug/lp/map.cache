@@ -4,3 +4,10 @@ SuperSocket.ClientEngine
 Syncfusion.SfChart.Android
 System.Runtime
 WebSocket4Net
+Xamarin.Android.Arch.Core.Common
+Xamarin.Android.Arch.Lifecycle.Common
+Xamarin.Android.Arch.Lifecycle.Runtime
+Xamarin.Android.Support.Annotations
+Xamarin.Android.Support.Compat
+Xamarin.Android.Support.Core.UI
+Xamarin.Android.Support.v7.RecyclerView

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SelectedDevice>Nexus_6</SelectedDevice>
+    <SelectedDevice>Google Pixel 2 XL</SelectedDevice>
     <DefaultDevice>Nexus_6</DefaultDevice>
     <AndroidDesignerPreferredDevice>Nexus 5</AndroidDesignerPreferredDevice>
     <DefaultDevice>Nexus_6</DefaultDevice>
-    <AndroidDesignerPreferredDevice>Nexus 6</AndroidDesignerPreferredDevice>
+    <AndroidDesignerPreferredDevice>Nexus 6P</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>

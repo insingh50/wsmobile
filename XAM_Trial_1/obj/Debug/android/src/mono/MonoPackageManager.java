@@ -112,6 +112,13 @@ class MonoPackageManager_Resources {
 		"SuperSocket.ClientEngine.dll",
 		"Syncfusion.SfChart.Android.dll",
 		"WebSocket4Net.dll",
+		"Xamarin.Android.Arch.Core.Common.dll",
+		"Xamarin.Android.Arch.Lifecycle.Common.dll",
+		"Xamarin.Android.Arch.Lifecycle.Runtime.dll",
+		"Xamarin.Android.Support.Annotations.dll",
+		"Xamarin.Android.Support.Compat.dll",
+		"Xamarin.Android.Support.Core.UI.dll",
+		"Xamarin.Android.Support.v7.RecyclerView.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};
